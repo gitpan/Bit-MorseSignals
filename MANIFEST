@@ -1,0 +1,25 @@
+Changes
+MANIFEST
+Makefile.PL
+README
+lib/Bit/MorseSignals.pm
+lib/Bit/MorseSignals/Emitter.pm
+lib/Bit/MorseSignals/Receiver.pm
+t/00-load.t
+t/01-import.t
+t/02-can.t
+t/20-emitter-obj.t
+t/21-emitter-plain.t
+t/22-emitter-utf8.t
+t/30-receiver-obj.t
+t/31-receiver-plain.t
+t/32-receiver-utf8.t
+t/50-chitchat-plain.t
+t/51-chitchat-utf8.t
+t/52-chitchat-storable.t
+t/90-boilerplate.t
+t/91-pod.t
+t/92-pod-coverage.t
+t/95-portability-files.t
+t/99-kwalitee.t
+META.yml                                 Module meta-data (added by MakeMaker)
