@@ -15,11 +15,11 @@ Bit::MorseSignals::Emitter - Base class for Bit::MorseSignals emitters.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -64,7 +64,7 @@ sub _count_bits {
 
 =head2 C<new>
 
-L<Bit::MorseSignal::Emitter> object constructor. Currently does not take any optional argument.
+L<Bit::MorseSignals::Emitter> object constructor. Currently does not take any optional argument.
 
 =cut
 

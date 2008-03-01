@@ -9,11 +9,11 @@ Bit::MorseSignals - The MorseSignals protocol.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 DESCRIPTION
 
@@ -39,7 +39,7 @@ The header is composed of three bits (lowest weight coming first) :
 
 =over 4
 
-=item - The 2 first ones denotes the data type : a value of 0 is used for a plain string, 1 for an UTF-8 encoded string, and 2 for a L<Storable> object. See also the L</CONSTANTS> sections ;
+=item - The 2 first ones denote the data type : a value of 0 is used for a plain string, 1 for an UTF-8 encoded string, and 2 for a L<Storable> object. See also the L</CONSTANTS> section ;
 
 =item - The third one is reserved. For compatibility reasons, the receiver should for now enforce the message data type to plain when this bit is lit.
 

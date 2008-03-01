@@ -15,11 +15,11 @@ Bit::MorseSignals::Receiver - Base class for Bit::MorseSignals receivers.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -48,7 +48,7 @@ sub _check_self {
 
 =head2 C<< new [ done => $cb ] >>
 
-L<Bit::MorseSignal::Receiver> object constructor. With the C<'done'> option, you can specify a callback that will be triggered every time a message is completed, and in which C<$_[0]> will be the receiver object and C<$_[1]> the message received.
+L<Bit::MorseSignals::Receiver> object constructor. With the C<'done'> option, you can specify a callback that will be triggered every time a message is completed, and in which C<$_[0]> will be the receiver object and C<$_[1]> the message received.
 
 =cut
 
@@ -111,6 +111,7 @@ sub push {
   if ($self->{len} >= 3) {
    my $type = 2 * vec($self->{buf}, 0, 1)
                 + vec($self->{buf}, 1, 1);
+   $type = BM_DATA_PLAIN if vec($self->{buf}, 2, 1);
    @{$self}{qw/state type buf len/} = (3, $type, '', 0);
   }
 

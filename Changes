@@ -1,5 +1,11 @@
 Revision history for Bit-MorseSignals
 
+0.02    2008-03-01 12:00 GMT
+        + Add : The samples/jerk.pl example script.
+        + Doc : Typos in POD.
+        + Fix : As the doc says, the datatype should be enforced to PLAIN when
+                the reserved bit is set.
+
 0.01    2008-03-01 10:40 GMT
         First version, released on an unsuspecting world.
 
