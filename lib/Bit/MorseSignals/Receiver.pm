@@ -15,15 +15,15 @@ Bit::MorseSignals::Receiver - Base class for Bit::MorseSignals receivers.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
 
-    use Bit::MorseSignals;
+    use Bit::MorseSignals::Receiver;
 
     my $pants = new Bit::MorseSignals::Receiver done => sub { print "received $_[1]!\n" };
     while (...) {
@@ -98,7 +98,9 @@ sub push {
     substr $self->{buf}, -$base, $base, '';
     my @demanglers = (sub { $_[0] }, \&decode_utf8, \&thaw  );
     #        BM_DATA_{PLAIN,         UTF8,          STORABLE}
-    $self->{msg} = $demanglers[$self->{type}]->($self->{buf});
+    $self->{msg} = defined $demanglers[$self->{type}]
+                    ? $demanglers[$self->{type}]->($self->{buf})
+                    : $self->{buf};
     $self->reset;
     $self->{done}->($self, $self->{msg}) if $self->{done};
     return;
@@ -185,7 +187,7 @@ L<Bit::MorseSignals>, L<Bit::MorseSignals::Emitter>.
 
 =head1 AUTHOR
 
-Vincent Pit, C<< <perl at profvince.com> >>
+Vincent Pit, C<< <perl at profvince.com> >>, L<http://www.profvince.com>.
 
 You can contact me by mail or on #perl @ FreeNode (vincent or Prof_Vince).
 

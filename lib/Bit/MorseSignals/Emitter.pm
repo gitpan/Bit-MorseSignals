@@ -15,15 +15,15 @@ Bit::MorseSignals::Emitter - Base class for Bit::MorseSignals emitters.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
 
-    use Bit::MorseSignals;
+    use Bit::MorseSignals::Emitter;
 
     my $deuce = new Bit::MorseSignals::Emitter;
     $deuce->post("hlagh") for 1 .. 3;
@@ -241,7 +241,7 @@ L<Bit::MorseSignals>, L<Bit::MorseSignals::Receiver>.
 
 =head1 AUTHOR
 
-Vincent Pit, C<< <perl at profvince.com> >>
+Vincent Pit, C<< <perl at profvince.com> >>, L<http://www.profvince.com>.
 
 You can contact me by mail or on #perl @ FreeNode (vincent or Prof_Vince).
 

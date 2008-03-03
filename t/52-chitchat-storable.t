@@ -7,7 +7,6 @@ use utf8;
 
 use Test::More tests => 10;
 
-use Bit::MorseSignals qw/BM_DATA_STORABLE/;
 use Bit::MorseSignals::Emitter;
 use Bit::MorseSignals::Receiver;
 

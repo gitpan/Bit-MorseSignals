@@ -9,11 +9,22 @@ Bit::MorseSignals - The MorseSignals protocol.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
+
+=head1 SYNOPSIS
+
+    use Bit::MorseSignals::Emitter;
+    use Bit::MorseSignals::Receiver;
+
+    my $deuce = new Bit::MorseSignals::Emitter;
+    my $pants = new Bit::MorseSignals::Receiver done => sub { print $_[1], "\n" };
+
+    $deuce->post('HLAGH') for 1 .. 3;
+    $pants->push while defined ($_ = $deuce->pop);
 
 =head1 DESCRIPTION
 
@@ -114,7 +125,7 @@ L<Bit::MorseSignals::Emitter>, L<Bit::MorseSignals::Receiver>.
 
 =head1 AUTHOR
 
-Vincent Pit, C<< <perl at profvince.com> >>
+Vincent Pit, C<< <perl at profvince.com> >>, L<http://www.profvince.com>.
 
 You can contact me by mail or on #perl @ FreeNode (vincent or Prof_Vince).
 
