@@ -15,11 +15,11 @@ Bit::MorseSignals::Emitter - Base class for Bit::MorseSignals emitters.
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -81,7 +81,7 @@ sub new {
  return $self;
 }
 
-=head2 C<< post $msg, [ type => $type ] >>
+=head2 C<< post $msg, < type => $type > >>
 
 Adds C<$msg> to the message queue and, if no other message is currently processed, dequeue the oldest item and prepare it. The type is automatically chosen, but you may want to try to force it with the C<type> option : C<$type> is then one of the C<BM_DATA_*> constants listed in L<Bit::MorseSignals/CONSTANTS>
 

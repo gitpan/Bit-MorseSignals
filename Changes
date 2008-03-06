@@ -1,16 +1,21 @@
 Revision history for Bit-MorseSignals
 
-0.03    2008-03-03 17:30 GMT
+0.04    2008-03-06 14:55 UTC
+        + Doc : POD tweaks.
+        + Fix : Correct dependencies listing in META.yml.
+        + Fix : Demanglers panicking over misformed data caused severe warnings.
+
+0.03    2008-03-03 17:30 UTC
         + Doc : Clarified synopsises.
         + Fix : The receiver could access inexistant demanglers if an error
                 occurred during the transfer.
 
-0.02    2008-03-01 12:00 GMT
+0.02    2008-03-01 12:00 UTC
         + Add : The samples/jerk.pl example script.
         + Doc : Typos in POD.
         + Fix : As the doc says, the datatype should be enforced to PLAIN when
                 the reserved bit is set.
 
-0.01    2008-03-01 10:40 GMT
+0.01    2008-03-01 10:40 UTC
         First version, released on an unsuspecting world.
 

@@ -15,11 +15,11 @@ Bit::MorseSignals::Receiver - Base class for Bit::MorseSignals receivers.
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -46,7 +46,7 @@ sub _check_self {
 
 =head1 METHODS
 
-=head2 C<< new [ done => $cb ] >>
+=head2 C<< new < done => $cb > >>
 
 L<Bit::MorseSignals::Receiver> object constructor. With the C<'done'> option, you can specify a callback that will be triggered every time a message is completed, and in which C<$_[0]> will be the receiver object and C<$_[1]> the message received.
 
@@ -99,7 +99,12 @@ sub push {
     my @demanglers = (sub { $_[0] }, \&decode_utf8, \&thaw  );
     #        BM_DATA_{PLAIN,         UTF8,          STORABLE}
     $self->{msg} = defined $demanglers[$self->{type}]
-                    ? $demanglers[$self->{type}]->($self->{buf})
+                    ? do {
+                       my $msg = eval {
+                        $demanglers[$self->{type}]->($self->{buf})
+                       };
+                       $@ ? undef : $msg;
+                      }
                     : $self->{buf};
     $self->reset;
     $self->{done}->($self, $self->{msg}) if $self->{done};
