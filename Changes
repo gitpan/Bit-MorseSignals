@@ -1,5 +1,11 @@
 Revision history for Bit-MorseSignals
 
+0.05    2008-03-13 23:05 UTC
+        + Add : The len and pos emitter methods.
+        + Fix : The usual set of POD typos.
+        + Fix : Propagate demangler errors as warnings.
+        + Tst : Small improvments.
+
 0.04    2008-03-06 14:55 UTC
         + Doc : POD tweaks.
         + Fix : Correct dependencies listing in META.yml.

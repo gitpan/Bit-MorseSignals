@@ -9,11 +9,11 @@ Bit::MorseSignals - The MorseSignals protocol.
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 SYNOPSIS
 
@@ -36,7 +36,7 @@ An actual implementation is also provided :
 
 =item L<Bit::MorseSignals::Emitter> is a base class for emitters ;
 
-=item L<Bit::MorseSignals::Receiver> is a base class for receivers ;
+=item L<Bit::MorseSignals::Receiver> is a base class for receivers.
 
 =back
 

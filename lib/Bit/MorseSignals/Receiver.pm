@@ -15,11 +15,11 @@ Bit::MorseSignals::Receiver - Base class for Bit::MorseSignals receivers.
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 SYNOPSIS
 
@@ -101,6 +101,7 @@ sub push {
     $self->{msg} = defined $demanglers[$self->{type}]
                     ? do {
                        my $msg = eval {
+                        local $SIG{__DIE__} = sub { warn @_ };
                         $demanglers[$self->{type}]->($self->{buf})
                        };
                        $@ ? undef : $msg;

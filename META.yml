@@ -1,11 +1,11 @@
 --- #YAML:1.0
 name:                Bit-MorseSignals
-version:             0.04
+version:             0.05
 abstract:            The MorseSignals protocol.
 license:             perl
 author:              
     - Vincent Pit <perl@profvince.com>
-generated_by:        ExtUtils::MakeMaker version 6.44
+generated_by:        ExtUtils::MakeMaker version 6.42
 distribution_type:   module
 requires:     
     Carp:                          0

@@ -19,22 +19,22 @@ sub build_req {
 }
 
 WriteMakefile(
-    NAME                => 'Bit::MorseSignals',
-    AUTHOR              => 'Vincent Pit <perl@profvince.com>',
-    LICENSE             => 'perl',
-    VERSION_FROM        => 'lib/Bit/MorseSignals.pm',
-    ABSTRACT_FROM       => 'lib/Bit/MorseSignals.pm',
-    PL_FILES            => {},
-    PREREQ_PM => {
-        'Carp'       => 0,
-        'Encode'     => 0,
-        'Exporter'   => 0,
-        'Storable'   => 0,
+    NAME          => 'Bit::MorseSignals',
+    AUTHOR        => 'Vincent Pit <perl@profvince.com>',
+    LICENSE       => 'perl',
+    VERSION_FROM  => 'lib/Bit/MorseSignals.pm',
+    ABSTRACT_FROM => 'lib/Bit/MorseSignals.pm',
+    PL_FILES      => {},
+    PREREQ_PM     => {
+        'Carp'     => 0,
+        'Encode'   => 0,
+        'Exporter' => 0,
+        'Storable' => 0,
     },
-    dist                => { 
-        PREOP => 'pod2text lib/Bit/MorseSignals.pm > $(DISTVNAME)/README; '
-                 . build_req,
-        COMPRESS => 'gzip -9f', SUFFIX => 'gz'
+    dist          => { 
+        PREOP      => 'pod2text lib/Bit/MorseSignals.pm > $(DISTVNAME)/README; '
+                      . build_req,
+        COMPRESS   => 'gzip -9f', SUFFIX => 'gz'
     },
-    clean               => { FILES => 'Bit-MorseSignals-*' },
+    clean         => { FILES => 'Bit-MorseSignals-*' },
 );

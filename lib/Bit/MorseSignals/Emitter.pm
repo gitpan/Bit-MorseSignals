@@ -15,11 +15,11 @@ Bit::MorseSignals::Emitter - Base class for Bit::MorseSignals emitters.
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 SYNOPSIS
 
@@ -174,6 +174,30 @@ sub pop {
  my $bit   = vec $self->{buf}, $self->{pos}++, 1;
  $self->reset if $self->{pos} >= $self->{len};
  return $bit;
+}
+
+=head2 C<len>
+
+The length of the currently posted message.
+
+=cut
+
+sub len {
+ my ($self) = @_;
+ _check_self($self);
+ return $self->{len};
+}
+
+=head2 C<pos>
+
+The number of bits that have already been sent for the current message.
+
+=cut
+
+sub pos {
+ my ($self) = @_;
+ _check_self($self);
+ return $self->{pos};
 }
 
 =head2 C<reset>

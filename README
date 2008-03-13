@@ -2,7 +2,7 @@ NAME
     Bit::MorseSignals - The MorseSignals protocol.
 
 VERSION
-    Version 0.04
+    Version 0.05
 
 SYNOPSIS
         use Bit::MorseSignals::Emitter;
@@ -25,7 +25,7 @@ DESCRIPTION
     An actual implementation is also provided :
 
     Bit::MorseSignals::Emitter is a base class for emitters ;
-    Bit::MorseSignals::Receiver is a base class for receivers ;
+    Bit::MorseSignals::Receiver is a base class for receivers.
 
     Go to those pages if you just want the stuff done and don't care about
     how it gets there.
