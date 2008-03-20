@@ -15,11 +15,11 @@ Bit::MorseSignals::Receiver - Base class for Bit::MorseSignals receivers.
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 =head1 SYNOPSIS
 
@@ -54,7 +54,7 @@ L<Bit::MorseSignals::Receiver> object constructor. With the C<'done'> option, yo
 
 sub new {
  my $class = shift;
- $class = ref $class || $class || return;
+ return unless $class = ref $class || $class;
  croak 'Optional arguments must be passed as key => value pairs' if @_ % 2;
  my %opts = @_;
  my $self = {
@@ -100,11 +100,8 @@ sub push {
     #        BM_DATA_{PLAIN,         UTF8,          STORABLE}
     $self->{msg} = defined $demanglers[$self->{type}]
                     ? do {
-                       my $msg = eval {
-                        local $SIG{__DIE__} = sub { warn @_ };
-                        $demanglers[$self->{type}]->($self->{buf})
-                       };
-                       $@ ? undef : $msg;
+                       local $SIG{__DIE__} = sub { warn @_ };
+                       $demanglers[$self->{type}]->($self->{buf})
                       }
                     : $self->{buf};
     $self->reset;
@@ -117,8 +114,8 @@ sub push {
 
   vec($self->{buf}, $self->{len}++, 1) = $bit;
   if ($self->{len} >= 3) {
-   my $type = 2 * vec($self->{buf}, 0, 1)
-                + vec($self->{buf}, 1, 1);
+   my $type = 2 * vec($self->{buf}, 1, 1)
+                + vec($self->{buf}, 0, 1);
    $type = BM_DATA_PLAIN if vec($self->{buf}, 2, 1);
    @{$self}{qw/state type buf len/} = (3, $type, '', 0);
   }
@@ -206,6 +203,8 @@ Please report any bugs or feature requests to C<bug-bit-morsesignals-receiver at
 You can find documentation for this module with the perldoc command.
 
     perldoc Bit::MorseSignals::Receiver
+
+Tests code coverage report is available at L<http://www.profvince.com/perl/cover/Bit-MorseSignals>.
 
 =head1 COPYRIGHT & LICENSE
 

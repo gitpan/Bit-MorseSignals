@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More 'no_plan';
+use Test::More tests => 2;
 
 use Bit::MorseSignals::Receiver;
 
@@ -14,6 +14,7 @@ my $pants = new Bit::MorseSignals::Receiver done => sub { $hlagh = $_[1] };
 my $msg  = 'x';
 my @bits = split //, '111110' . '000' . '00011110' . '011111';
 
-$pants->push for @bits;
+$pants->push($_) for @bits;
 
-ok(defined $hlagh && $hlagh eq $msg, 'message properly received');
+is($hlagh,      $msg, 'message properly received');
+is($pants->msg, $msg, 'message properly stored');

@@ -15,11 +15,11 @@ Bit::MorseSignals::Emitter - Base class for Bit::MorseSignals emitters.
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 =head1 SYNOPSIS
 
@@ -70,7 +70,7 @@ L<Bit::MorseSignals::Emitter> object constructor. Currently does not take any op
 
 sub new {
  my $class = shift;
- $class = ref $class || $class || return;
+ return unless $class = ref $class || $class;
  croak 'Optional arguments must be passed as key => value pairs' if @_ % 2;
  my %opts = @_;
  my $self = {
@@ -128,8 +128,8 @@ sub post {
  $self->{state} = 2;
 
  my $head = '';
- vec($head, 0, 1) = ($type & 2) >> 1;
- vec($head, 1, 1) = ($type & 1);
+ vec($head, 0, 1) = ($type & 1);
+ vec($head, 1, 1) = ($type & 2) >> 1;
  vec($head, 2, 1) = 0;
  my $hlen = 3;
 
@@ -278,6 +278,8 @@ Please report any bugs or feature requests to C<bug-bit-morsesignals-emitter at 
 You can find documentation for this module with the perldoc command.
 
     perldoc Bit::MorseSignals::Emitter
+
+Tests code coverage report is available at L<http://www.profvince.com/perl/cover/Bit-MorseSignals>.
 
 =head1 COPYRIGHT & LICENSE
 

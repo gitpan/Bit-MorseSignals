@@ -2,7 +2,7 @@ NAME
     Bit::MorseSignals - The MorseSignals protocol.
 
 VERSION
-    Version 0.05
+    Version 0.06
 
 SYNOPSIS
         use Bit::MorseSignals::Emitter;
@@ -108,6 +108,9 @@ SUPPORT
     You can find documentation for this module with the perldoc command.
 
         perldoc Bit::MorseSignals
+
+    Tests code coverage report is available at
+    <http://www.profvince.com/perl/cover/Bit-MorseSignals>.
 
 COPYRIGHT & LICENSE
     Copyright 2008 Vincent Pit, all rights reserved.

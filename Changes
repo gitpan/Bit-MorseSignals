@@ -1,5 +1,11 @@
 Revision history for Bit-MorseSignals
 
+0.06    2008-03-20 19:45 UTC
+        + Fix : Read the datatype bits in the right order (lowest weight bit
+                coming first).
+        + Fix : Propagate demangler errors correctly.
+        + Tst : Tests now cover 100% of the code.
+
 0.05    2008-03-13 23:05 UTC
         + Add : The len and pos emitter methods.
         + Fix : The usual set of POD typos.

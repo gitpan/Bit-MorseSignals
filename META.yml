@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Bit-MorseSignals
-version:             0.05
+version:             0.06
 abstract:            The MorseSignals protocol.
 license:             perl
 author:              

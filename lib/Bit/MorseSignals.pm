@@ -9,11 +9,11 @@ Bit::MorseSignals - The MorseSignals protocol.
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 =head1 SYNOPSIS
 
@@ -138,6 +138,8 @@ Please report any bugs or feature requests to C<bug-bit-morsesignals at rt.cpan.
 You can find documentation for this module with the perldoc command.
 
     perldoc Bit::MorseSignals
+
+Tests code coverage report is available at L<http://www.profvince.com/perl/cover/Bit-MorseSignals>.
 
 =head1 COPYRIGHT & LICENSE
 

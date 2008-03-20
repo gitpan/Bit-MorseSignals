@@ -12,32 +12,24 @@ use Bit::MorseSignals::Emitter;
 
 my $deuce = new Bit::MorseSignals::Emitter utf8 => 'DO WANT';
 
-my $i;
-sub test_bit {
- my ($desc, $b, $e) = @_;
- ok(defined $b && $b == $e,
-    "$desc: bit $i : " . (defined $b ? "got $b, expected $e" : 'undef'));
- ++$i;
-}
-
 sub test_msg {
  my ($desc, $exp) = @_;
  my $last = pop @$exp;
 
- $i = 0;
+ my $i = 0;
  for (@$exp) {
   my $b = $deuce->pop;
   ok($deuce->busy, "$desc: BME object is busy after pop $i");
-  test_bit $desc, $b, $_;
+  is($b, $_,       "$desc: bit $i is correct");
  }
 
  my $b = $deuce->pop;
  ok(!$deuce->busy, "$desc: BME object is no longer busy when over");
- test_bit $desc, $b, $last;
+ is($b, $last, "$desc: last bit is correct");
 }
 
 my $msg = 'é';
-my @exp = split //, '11110' . '010' . '11000011' . '10010101' . '01111';
+my @exp = split //, '11110' . '100' . '11000011' . '10010101' . '01111';
 
 my $ret = eval { $deuce->post($msg) };
 ok(!$@, "simple post doesn't croak ($@)");

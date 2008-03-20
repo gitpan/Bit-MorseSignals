@@ -15,6 +15,7 @@ t/22-emitter-utf8.t
 t/30-receiver-obj.t
 t/31-receiver-plain.t
 t/32-receiver-utf8.t
+t/33-receiver-misformed.t
 t/50-chitchat-plain.t
 t/51-chitchat-utf8.t
 t/52-chitchat-storable.t

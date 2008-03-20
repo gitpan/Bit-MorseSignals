@@ -36,5 +36,5 @@ WriteMakefile(
                       . build_req,
         COMPRESS   => 'gzip -9f', SUFFIX => 'gz'
     },
-    clean         => { FILES => 'Bit-MorseSignals-*' },
+    clean         => { FILES => 'Bit-MorseSignals-* *.gcov *.gcda *.gcno cover_db' },
 );
