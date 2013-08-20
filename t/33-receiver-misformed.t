@@ -11,7 +11,7 @@ use Bit::MorseSignals::Receiver;
 
 my $hlagh;
 
-my $pants = new Bit::MorseSignals::Receiver done => sub { $hlagh = $_[1] };
+my $pants = Bit::MorseSignals::Receiver->new(done => sub { $hlagh = $_[1] });
 
 my $wrong = "\x{FF}\x{FF}";
 

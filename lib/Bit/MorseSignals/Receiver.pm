@@ -3,11 +3,11 @@ package Bit::MorseSignals::Receiver;
 use strict;
 use warnings;
 
-use Carp qw/croak/;
-use Encode qw/decode_utf8/;
-use Storable qw/thaw/;
+use Carp     qw<croak>;
+use Encode   qw<decode_utf8>;
+use Storable qw<thaw>;
 
-use Bit::MorseSignals qw/:consts/;
+use Bit::MorseSignals qw<:consts>;
 
 =head1 NAME
 
@@ -15,17 +15,17 @@ Bit::MorseSignals::Receiver - Base class for Bit::MorseSignals receivers.
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 =head1 SYNOPSIS
 
     use Bit::MorseSignals::Receiver;
 
-    my $pants = new Bit::MorseSignals::Receiver done => sub { print "received $_[1]!\n" };
+    my $pants = Bit::MorseSignals::Receiver->new(done => sub { print "received $_[1]!\n" });
     while (...) {
      my $bit = comes_from_somewhere_lets_say_signals();
      $pants->push($bit);
@@ -117,7 +117,7 @@ sub push {
    my $type = 2 * vec($self->{buf}, 1, 1)
                 + vec($self->{buf}, 0, 1);
    $type = BM_DATA_PLAIN if vec($self->{buf}, 2, 1);
-   @{$self}{qw/state type buf len/} = (3, $type, '', 0);
+   @{$self}{qw<state type buf len>} = (3, $type, '', 0);
   }
 
  } elsif ($self->{state} == 1) { # end of signature
@@ -129,7 +129,7 @@ sub push {
 
  } else { # first bit
 
-  @{$self}{qw/state sig sig_bit sig_len buf len/}
+  @{$self}{qw<state sig sig_bit sig_len buf len>}
            = (1,    '', $bit,   1,      '', 0  );
   vec($self->{sig}, 0, 1) = $bit;
 
@@ -148,7 +148,7 @@ sub reset {
  my ($self) = @_;
  _check_self($self);
  $self->{state} = 0;
- @{$self}{qw/sig sig_bit sig_len type buf len/} = ();
+ @{$self}{qw<sig sig_bit sig_len type buf len>} = ();
  return $self;
 }
 
@@ -192,7 +192,7 @@ L<Bit::MorseSignals>, L<Bit::MorseSignals::Emitter>.
 
 Vincent Pit, C<< <perl at profvince.com> >>, L<http://www.profvince.com>.
 
-You can contact me by mail or on #perl @ FreeNode (vincent or Prof_Vince).
+You can contact me by mail or on C<irc.perl.org> (vincent).
 
 =head1 BUGS
 

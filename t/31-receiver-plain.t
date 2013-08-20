@@ -9,7 +9,7 @@ use Bit::MorseSignals::Receiver;
 
 my $hlagh;
 
-my $pants = new Bit::MorseSignals::Receiver done => sub { $hlagh = $_[1] };
+my $pants = Bit::MorseSignals::Receiver->new(done => sub { $hlagh = $_[1] });
 
 my $msg  = 'x';
 my @bits = split //, '111110' . '000' . '00011110' . '011111';

@@ -9,19 +9,19 @@ Bit::MorseSignals - The MorseSignals protocol.
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 =head1 SYNOPSIS
 
     use Bit::MorseSignals::Emitter;
     use Bit::MorseSignals::Receiver;
 
-    my $deuce = new Bit::MorseSignals::Emitter;
-    my $pants = new Bit::MorseSignals::Receiver done => sub { print $_[1], "\n" };
+    my $deuce = Bit::MorseSignals::Emitter->new;
+    my $pants = Bit::MorseSignals::Receiver->new(done => sub { print $_[1], "\n" });
 
     $deuce->post('HLAGH') for 1 .. 3;
     $pants->push while defined ($_ = $deuce->pop);
@@ -106,11 +106,11 @@ The constants L</BM_DATA_AUTO>, L</BM_DATA_PLAIN>, L</BM_DATA_UTF8> and L</BM_DA
 
 =cut
 
-use base qw/Exporter/;
+use base qw<Exporter>;
 
 our @EXPORT         = ();
 our %EXPORT_TAGS    = (
- 'consts' => [ qw/BM_DATA_AUTO BM_DATA_PLAIN BM_DATA_UTF8 BM_DATA_STORABLE/ ]
+ 'consts' => [ qw<BM_DATA_AUTO BM_DATA_PLAIN BM_DATA_UTF8 BM_DATA_STORABLE> ]
 );
 our @EXPORT_OK      = map { @$_ } values %EXPORT_TAGS;
 $EXPORT_TAGS{'all'} = [ @EXPORT_OK ];
@@ -127,7 +127,7 @@ L<Bit::MorseSignals::Emitter>, L<Bit::MorseSignals::Receiver>.
 
 Vincent Pit, C<< <perl at profvince.com> >>, L<http://www.profvince.com>.
 
-You can contact me by mail or on #perl @ FreeNode (vincent or Prof_Vince).
+You can contact me by mail or on C<irc.perl.org> (vincent).
 
 =head1 BUGS
 

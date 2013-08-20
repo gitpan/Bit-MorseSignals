@@ -7,7 +7,7 @@ use Test::More 'no_plan';
 
 use Bit::MorseSignals::Emitter;
 
-my $deuce = new Bit::MorseSignals::Emitter;
+my $deuce = Bit::MorseSignals::Emitter->new;
 
 sub test_msg {
  my ($desc, $exp, $try_post) = @_;

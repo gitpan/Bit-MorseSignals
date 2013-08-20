@@ -1,5 +1,7 @@
 Changes
 MANIFEST
+META.json
+META.yml
 Makefile.PL
 README
 lib/Bit/MorseSignals.pm
@@ -19,9 +21,8 @@ t/33-receiver-misformed.t
 t/50-chitchat-plain.t
 t/51-chitchat-utf8.t
 t/52-chitchat-storable.t
-t/90-boilerplate.t
 t/91-pod.t
 t/92-pod-coverage.t
+t/93-pod-spelling.t
 t/95-portability-files.t
-t/99-kwalitee.t
-META.yml                                 Module meta-data (added by MakeMaker)
+t/lib/VPIT/TestHelpers.pm

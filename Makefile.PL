@@ -2,39 +2,55 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
-my $BUILD_REQUIRES = {
- 'utf8'                => 0,
- 'ExtUtils::MakeMaker' => 0,
- 'Test::More'          => 0,
-};
+my $dist = 'Bit-MorseSignals';
 
-sub build_req {
- my $tometa = ' >> $(DISTVNAME)/META.yml;';
- my $build_req = 'echo "build_requires:" ' . $tometa;
- foreach my $mod ( sort { lc $a cmp lc $b } keys %$BUILD_REQUIRES ) {
-  my $ver = $BUILD_REQUIRES->{$mod};
-  $build_req .= sprintf 'echo "    %-30s %s" %s', "$mod:", $ver, $tometa;
- }
- return $build_req;
-}
+(my $name = $dist) =~ s{-}{::}g;
+
+(my $file = $dist) =~ s{-}{/}g;
+$file = "lib/$file.pm";
+
+my %PREREQ_PM = (
+ 'Carp'     => 0,
+ 'Encode'   => 0,
+ 'Exporter' => 0,
+ 'Storable' => 0,
+ 'base'     => 0,
+);
+
+my %META = (
+ configure_requires => {
+  'ExtUtils::MakeMaker' => 0,
+ },
+ build_requires => {
+  'utf8'                => 0,
+  'ExtUtils::MakeMaker' => 0,
+  'Test::More'          => 0,
+  %PREREQ_PM,
+ },
+ dynamic_config => 0,
+ resources => {
+  bugtracker => "http://rt.cpan.org/Dist/Display.html?Name=$dist",
+  homepage   => "http://search.cpan.org/dist/$dist/",
+  license    => 'http://dev.perl.org/licenses/',
+  repository => "http://git.profvince.com/?p=perl%2Fmodules%2F$dist.git",
+ },
+);
 
 WriteMakefile(
-    NAME          => 'Bit::MorseSignals',
-    AUTHOR        => 'Vincent Pit <perl@profvince.com>',
-    LICENSE       => 'perl',
-    VERSION_FROM  => 'lib/Bit/MorseSignals.pm',
-    ABSTRACT_FROM => 'lib/Bit/MorseSignals.pm',
-    PL_FILES      => {},
-    PREREQ_PM     => {
-        'Carp'     => 0,
-        'Encode'   => 0,
-        'Exporter' => 0,
-        'Storable' => 0,
-    },
-    dist          => { 
-        PREOP      => 'pod2text lib/Bit/MorseSignals.pm > $(DISTVNAME)/README; '
-                      . build_req,
-        COMPRESS   => 'gzip -9f', SUFFIX => 'gz'
-    },
-    clean         => { FILES => 'Bit-MorseSignals-* *.gcov *.gcda *.gcno cover_db' },
+ NAME             => $name,
+ AUTHOR           => 'Vincent Pit <perl@profvince.com>',
+ LICENSE          => 'perl',
+ VERSION_FROM     => $file,
+ ABSTRACT_FROM    => $file,
+ PL_FILES         => {},
+ PREREQ_PM        => \%PREREQ_PM,
+ MIN_PERL_VERSION => 5.008,
+ META_MERGE       => \%META,
+ dist             => {
+  PREOP    => "pod2text -u $file > \$(DISTVNAME)/README",
+  COMPRESS => 'gzip -9f', SUFFIX => 'gz'
+ },
+ clean            => {
+  FILES => "$dist-* *.gcov *.gcda *.gcno cover_db Debian_CPANTS.txt"
+ },
 );

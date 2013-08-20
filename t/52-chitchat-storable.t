@@ -19,11 +19,11 @@ my @msgs = (
 $msgs[7]->{wut} = { dong => [ 0 .. 99 ], recurse => $msgs[7] };
 my $i = 0;
 
-my $deuce = new Bit::MorseSignals::Emitter;
-my $pants = new Bit::MorseSignals::Receiver done => sub {
+my $deuce = Bit::MorseSignals::Emitter->new;
+my $pants = Bit::MorseSignals::Receiver->new(done => sub {
  my $cur = shift @msgs;
  is_deeply($_[1], $cur, 'got object ' . $i++);
-};
+});
 
 $deuce->post($_) for @msgs;
 $pants->push while defined ($_ = $deuce->pop); # ))<>((

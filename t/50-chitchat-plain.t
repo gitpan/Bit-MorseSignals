@@ -8,14 +8,14 @@ use Test::More tests => 9;
 use Bit::MorseSignals::Emitter;
 use Bit::MorseSignals::Receiver;
 
-my @msgs = qw/hlagh hlaghlaghlagh HLAGH HLAGHLAGHLAGH \x{0dd0}\x{00}
-              h\x{00}la\x{00}gh \x{00}\x{ff}\x{ff}\x{00}\x{00}\x{ff}/;
+my @msgs = qw<hlagh hlaghlaghlagh HLAGH HLAGHLAGHLAGH \x{0dd0}\x{00}
+              h\x{00}la\x{00}gh \x{00}\x{ff}\x{ff}\x{00}\x{00}\x{ff}>;
 
-my $deuce = new Bit::MorseSignals::Emitter;
-my $pants = new Bit::MorseSignals::Receiver done => sub {
+my $deuce = Bit::MorseSignals::Emitter->new;
+my $pants = Bit::MorseSignals::Receiver->new(done => sub {
  my $cur = shift @msgs;
- ok($_[1] eq $cur, 'got ' . $_[1] . ', received ' . $cur)
-};
+ is($_[1], $cur, 'received message is correct');
+});
 
 $deuce->post($_) for @msgs;
 $pants->push while defined ($_ = $deuce->pop); # ))<>((

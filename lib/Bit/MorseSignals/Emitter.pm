@@ -3,11 +3,11 @@ package Bit::MorseSignals::Emitter;
 use strict;
 use warnings;
 
-use Carp qw/croak/;
-use Encode qw/encode_utf8 is_utf8/;
-use Storable qw/freeze/;
+use Carp     qw<croak>;
+use Encode   qw<encode_utf8 is_utf8>;
+use Storable qw<freeze>;
 
-use Bit::MorseSignals qw/:consts/;
+use Bit::MorseSignals qw<:consts>;
 
 =head1 NAME
 
@@ -15,17 +15,17 @@ Bit::MorseSignals::Emitter - Base class for Bit::MorseSignals emitters.
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 =head1 SYNOPSIS
 
     use Bit::MorseSignals::Emitter;
 
-    my $deuce = new Bit::MorseSignals::Emitter;
+    my $deuce = Bit::MorseSignals::Emitter->new;
     $deuce->post("hlagh") for 1 .. 3;
     while (defined(my $bit = $deuce->pop)) {
      sends_by_some_mean_lets_say_signals($bit);
@@ -102,7 +102,7 @@ sub post {
   #      BM_DATA_{PLAIN,         UTF8,          STORABLE}
   $type = BM_DATA_AUTO unless defined $type and exists $manglers[$type];
   if (ref $msg) {
-   return if { map { $_ => 1 } qw/CODE GLOB/ }->{ref $msg};
+   return if { map { $_ => 1 } qw<CODE GLOB> }->{ref $msg};
    $type = BM_DATA_STORABLE;
   } elsif ($type == BM_DATA_AUTO) {
    $type = is_utf8($msg) ? BM_DATA_UTF8 : BM_DATA_PLAIN;
@@ -210,7 +210,7 @@ sub reset {
  my ($self) = @_;
  _check_self($self);
  $self->{state} = @{$self->{queue}} > 0;
- @{$self}{qw/buf len pos/} = ();
+ @{$self}{qw<buf len pos>} = ();
  return $self;
 }
 
@@ -267,7 +267,7 @@ L<Bit::MorseSignals>, L<Bit::MorseSignals::Receiver>.
 
 Vincent Pit, C<< <perl at profvince.com> >>, L<http://www.profvince.com>.
 
-You can contact me by mail or on #perl @ FreeNode (vincent or Prof_Vince).
+You can contact me by mail or on C<irc.perl.org> (vincent).
 
 =head1 BUGS
 

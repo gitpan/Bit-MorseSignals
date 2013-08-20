@@ -7,10 +7,10 @@ use utf8;
 
 use Test::More 'no_plan';
 
-use Bit::MorseSignals qw/BM_DATA_PLAIN/;
+use Bit::MorseSignals qw<BM_DATA_PLAIN>;
 use Bit::MorseSignals::Emitter;
 
-my $deuce = new Bit::MorseSignals::Emitter utf8 => 'DO WANT';
+my $deuce = Bit::MorseSignals::Emitter->new(utf8 => 'DO WANT');
 
 sub test_msg {
  my ($desc, $exp) = @_;
